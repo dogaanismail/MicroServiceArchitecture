@@ -1,6 +1,6 @@
 ﻿namespace Catalog.API.Dtos
 {
-    public class FeatureDto
+    internal class FeatureDto
     {
         public int Duration { get; set; }
     }

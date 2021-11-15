@@ -1,6 +1,6 @@
 ﻿namespace Catalog.API.Dtos
 {
-    public class CourseUpdateDto
+    internal class CourseUpdateDto
     {
         public string Id { get; set; }
 
