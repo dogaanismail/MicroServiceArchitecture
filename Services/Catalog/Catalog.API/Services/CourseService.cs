@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Catalog.API.Services
 {
-    internal class CourseService : ICourseService
+    public class CourseService : ICourseService
     {
         #region Fields
         private readonly IMongoCollection<Course> _courseCollection;

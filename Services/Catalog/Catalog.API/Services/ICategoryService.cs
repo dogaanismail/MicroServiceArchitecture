@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Catalog.API.Services
 {
-    internal interface ICategoryService
+    public interface ICategoryService
     {
         Task<Response<List<CategoryDto>>> GetAllAsync();
 

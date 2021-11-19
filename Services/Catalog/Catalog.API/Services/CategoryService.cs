@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Catalog.API.Services
 {
-    internal class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
         #region Fields
         private readonly IMongoCollection<Category> _categoryCollection;

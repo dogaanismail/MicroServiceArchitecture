@@ -8,7 +8,7 @@ namespace Catalog.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    internal class CoursesController : CustomBaseController
+    public class CoursesController : CustomBaseController
     {
         #region Fields
         private readonly ICourseService _courseService;
@@ -17,7 +17,7 @@ namespace Catalog.API.Controllers
 
         #region Ctor
 
-        internal CoursesController(ICourseService courseService)
+        public CoursesController(ICourseService courseService)
         {
             _courseService = courseService;
         }
@@ -42,6 +42,7 @@ namespace Catalog.API.Controllers
             return CreateActionResultInstance(response);
         }
 
+        [HttpGet]
         [Route("/api/[controller]/GetAllByUserId/{userId}")]
         public async Task<IActionResult> GetAllByUserId(string userId)
         {

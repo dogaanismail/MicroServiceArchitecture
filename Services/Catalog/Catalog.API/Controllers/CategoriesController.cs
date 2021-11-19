@@ -8,7 +8,7 @@ namespace Catalog.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    internal class CategoriesController : CustomBaseController
+    public class CategoriesController : CustomBaseController
     {
         #region Fields
         private readonly ICategoryService _categoryService;
@@ -17,7 +17,7 @@ namespace Catalog.API.Controllers
 
         #region Ctor
 
-        internal CategoriesController(ICategoryService categoryService)
+        public CategoriesController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
