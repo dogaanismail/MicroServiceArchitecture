@@ -10,8 +10,9 @@ namespace MicroServiceArchitecture.IdentityServer
         public static IEnumerable<ApiResource> ApiResources => new ApiResource[]
         {
             new ApiResource("resource_catalog"){Scopes = {"catalog_fullpermission"}},
-            new ApiResource("photo_stock_catalog"){Scopes = {"photo_stock_fullpermission"}},
-            new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
+            new ApiResource("resource_photo_stock"){Scopes = {"photo_stock_fullpermission"}},
+            new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
+            new ApiResource("resource_basket"){Scopes = {"basket_fullpermission"}},
         };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -28,7 +29,8 @@ namespace MicroServiceArchitecture.IdentityServer
             {
                 new ApiScope("catalog_fullpermission", "Catalog api icin full erisim yetkisi."),
                 new ApiScope("photo_stock_fullpermission", "Photo Stock api icin full erisim yetkisi."),
-                new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
+                new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
+                new ApiScope("basket_fullpermission", "Basket api icin full erisim yetkisi.")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -51,7 +53,9 @@ namespace MicroServiceArchitecture.IdentityServer
                     ClientSecrets = {new Secret("secret".Sha256())},
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     AllowedScopes =
-                    { IdentityServerConstants.StandardScopes.Email,
+                    {
+                      "basket_fullpermission",
+                      IdentityServerConstants.StandardScopes.Email,
                       IdentityServerConstants.StandardScopes.OpenId,
                       IdentityServerConstants.StandardScopes.Profile,
                       IdentityServerConstants.StandardScopes.OfflineAccess,
