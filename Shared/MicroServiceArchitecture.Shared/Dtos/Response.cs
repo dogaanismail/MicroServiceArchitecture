@@ -25,7 +25,8 @@ namespace MicroServiceArchitecture.Shared.Dtos
             return new Response<T> { Data = default, StatusCode = statusCode, IsSuccessful = true };
         }
 
-        private static Response<T> Fail(List<string> errors, int statusCode)
+        public static Response<T> Fail(List<string> errors, int statusCode)
+
         {
             return new Response<T>
             {
