@@ -1,6 +1,7 @@
 ﻿using IdentityServer4;
 using MicroServiceArchitecture.IdentityServer.Data;
 using MicroServiceArchitecture.IdentityServer.Models;
+using MicroServiceArchitecture.IdentityServer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -48,6 +49,8 @@ namespace MicroServiceArchitecture.IdentityServer
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
                 .AddAspNetIdentity<ApplicationUser>();
+
+            builder.AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>();
 
             builder.AddDeveloperSigningCredential();
 
