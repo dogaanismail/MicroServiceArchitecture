@@ -13,6 +13,7 @@ namespace MicroServiceArchitecture.IdentityServer
             new ApiResource("resource_photo_stock"){Scopes = {"photo_stock_fullpermission"}},
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
             new ApiResource("resource_basket"){Scopes = {"basket_fullpermission"}},
+            new ApiResource("resource_discount"){Scopes = {"discount_fullpermission"}},
         };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -21,7 +22,11 @@ namespace MicroServiceArchitecture.IdentityServer
                        new IdentityResources.Email(),
                        new IdentityResources.OpenId(),
                        new IdentityResources.Profile(),
-                       new IdentityResource(){Name="roles", DisplayName="Roles", Description="User roles", UserClaims = new[]{"role"} }
+                       new IdentityResource(){
+                           Name="roles",
+                           DisplayName="Roles", 
+                           Description="User roles",
+                           UserClaims = new[]{"role"} }
                    };
 
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -30,7 +35,8 @@ namespace MicroServiceArchitecture.IdentityServer
                 new ApiScope("catalog_fullpermission", "Catalog api icin full erisim yetkisi."),
                 new ApiScope("photo_stock_fullpermission", "Photo Stock api icin full erisim yetkisi."),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
-                new ApiScope("basket_fullpermission", "Basket api icin full erisim yetkisi.")
+                new ApiScope("basket_fullpermission", "Basket api icin full erisim yetkisi."),
+                new ApiScope("discount_fullpermission", "Discount api icin full erisim yetkisi.")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -55,6 +61,7 @@ namespace MicroServiceArchitecture.IdentityServer
                     AllowedScopes =
                     {
                       "basket_fullpermission",
+                      "discount_fullpermission",
                       IdentityServerConstants.StandardScopes.Email,
                       IdentityServerConstants.StandardScopes.OpenId,
                       IdentityServerConstants.StandardScopes.Profile,
