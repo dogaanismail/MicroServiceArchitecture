@@ -30,7 +30,7 @@ namespace Discount.Api.Services
 
         #region Methods
 
-        public async Task<Response<NoContent>> DeleteAsync(string id)
+        public async Task<Response<NoContent>> DeleteAsync(int id)
         {
             var status = await _dbConnection.ExecuteAsync("delete from discount where id = @Id", new { Id = id });
 

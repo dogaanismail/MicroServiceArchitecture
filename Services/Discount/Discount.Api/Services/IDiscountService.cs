@@ -14,7 +14,7 @@ namespace Discount.Api.Services
 
         Task<Response<NoContent>> UpdateAsync(Models.Discount discount);
 
-        Task<Response<NoContent>> DeleteAsync(string id);
+        Task<Response<NoContent>> DeleteAsync(int id);
 
         Task<Response<Models.Discount>> GetByCodeAndUserIdAsync(string code, string userId);
     }
