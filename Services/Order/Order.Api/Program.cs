@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace PhotoStock.Api
+namespace Order.Api
 {
     public class Program
     {
