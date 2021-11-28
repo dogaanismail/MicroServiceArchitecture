@@ -1,7 +1,10 @@
 using MediatR;
 using MicroServiceArchitecture.Shared.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Order.Application.Handlers;
 using Order.Infrastructure;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Order.Api
 {
@@ -23,6 +27,16 @@ namespace Order.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var requireAuthorize = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["IdentityServerURL"];
+                options.Audience = "resource_order";
+                options.RequireHttpsMetadata = false;
+            });
+
             services.AddDbContext<OrderDbContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), configure =>
                  {
@@ -33,7 +47,11 @@ namespace Order.Api
             services.AddMediatR(typeof(CreateOrderCommandHandler).Assembly);
             services.AddSingleton<ISharedIdentityService, SharedIdentityService>();
 
-            services.AddControllers();
+            services.AddControllers(opt =>
+            {
+                opt.Filters.Add(new AuthorizeFilter(requireAuthorize));
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Order.Api", Version = "v1" });
@@ -51,6 +69,7 @@ namespace Order.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
