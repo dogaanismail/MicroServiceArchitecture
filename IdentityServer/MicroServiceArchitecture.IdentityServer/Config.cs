@@ -14,7 +14,8 @@ namespace MicroServiceArchitecture.IdentityServer
             new ApiResource(IdentityServerConstants.LocalApi.ScopeName),
             new ApiResource("resource_basket"){Scopes = {"basket_fullpermission"}},
             new ApiResource("resource_discount"){Scopes = {"discount_fullpermission"}},
-            new ApiResource("resource_order"){Scopes = {"order_fullpermission"}}
+            new ApiResource("resource_order"){Scopes = {"order_fullpermission"}},
+            new ApiResource("resource_payment"){Scopes = {"payment_fullpermission"}}
         };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -38,7 +39,8 @@ namespace MicroServiceArchitecture.IdentityServer
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName),
                 new ApiScope("basket_fullpermission", "Basket api icin full erisim yetkisi."),
                 new ApiScope("discount_fullpermission", "Discount api icin full erisim yetkisi."),
-                new ApiScope("order_fullpermission", "Order api icin full erisim yetkisi.")
+                new ApiScope("order_fullpermission", "Order api icin full erisim yetkisi."),
+                new ApiScope("payment_fullpermission", "Payment api icin full erisim yetkisi.")
             };
 
         public static IEnumerable<Client> Clients =>
@@ -65,6 +67,7 @@ namespace MicroServiceArchitecture.IdentityServer
                       "basket_fullpermission",
                       "discount_fullpermission",
                       "order_fullpermission",
+                      "payment_fullpermission",
                       IdentityServerConstants.StandardScopes.Email,
                       IdentityServerConstants.StandardScopes.OpenId,
                       IdentityServerConstants.StandardScopes.Profile,
