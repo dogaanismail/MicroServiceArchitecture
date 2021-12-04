@@ -1,4 +1,4 @@
-﻿namespace Catalog.API.Dtos
+﻿namespace Catalog.Api.Dtos
 {
     public class CourseUpdateDto
     {

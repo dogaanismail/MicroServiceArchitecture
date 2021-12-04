@@ -1,9 +1,9 @@
-﻿using Catalog.API.Dtos;
+﻿using Catalog.Api.Dtos;
 using MicroServiceArchitecture.Shared.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Services
+namespace Catalog.Api.Services
 {
     public interface ICourseService
     {

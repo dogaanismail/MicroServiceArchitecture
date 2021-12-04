@@ -1,5 +1,5 @@
-using Catalog.API.Services;
-using Catalog.API.Settings;
+using Catalog.Api.Services;
+using Catalog.Api.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 
-namespace Catalog.API
+namespace Catalog.Api
 {
     public class Startup
     {

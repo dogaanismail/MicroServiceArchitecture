@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using Catalog.API.Dtos;
-using Catalog.API.Models;
-using Catalog.API.Settings;
+using Catalog.Api.Dtos;
+using Catalog.Api.Models;
+using Catalog.Api.Settings;
 using MicroServiceArchitecture.Shared.Dtos;
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Services
+namespace Catalog.Api.Services
 {
     public class CategoryService : ICategoryService
     {

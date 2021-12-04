@@ -1,10 +1,10 @@
-﻿using Catalog.API.Dtos;
-using Catalog.API.Services;
+﻿using Catalog.Api.Dtos;
+using Catalog.Api.Services;
 using MicroServiceArchitecture.Shared.ControllerBases;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace Catalog.API.Controllers
+namespace Catalog.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

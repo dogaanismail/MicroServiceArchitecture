@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Catalog.API.Dtos;
-using Catalog.API.Models;
+using Catalog.Api.Dtos;
+using Catalog.Api.Models;
 
-namespace Catalog.API.Mapping
+namespace Catalog.Api.Mapping
 {
     public class GeneralMapping : Profile
     {

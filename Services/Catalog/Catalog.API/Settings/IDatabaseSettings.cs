@@ -1,4 +1,4 @@
-﻿namespace Catalog.API.Settings
+﻿namespace Catalog.Api.Settings
 {
     public interface IDatabaseSettings
     {

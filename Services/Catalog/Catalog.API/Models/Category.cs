@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Catalog.API.Models
+namespace Catalog.Api.Models
 {
     public class Category
     {

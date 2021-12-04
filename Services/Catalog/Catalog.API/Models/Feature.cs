@@ -1,4 +1,4 @@
-﻿namespace Catalog.API.Models
+﻿namespace Catalog.Api.Models
 {
     public class Feature
     {
