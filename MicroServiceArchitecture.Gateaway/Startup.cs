@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
@@ -9,8 +10,22 @@ namespace MicroServiceArchitecture.Gateaway
 {
     public class Startup
     {
+        private readonly IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication().AddJwtBearer("GateawayAuthenticationSchema", options =>
+            {
+                options.Authority = Configuration["IdentityServerURL"];
+                options.Audience = "resource_gateaway";
+                options.RequireHttpsMetadata = false;
+            });
+
             services.AddOcelot();
         }
 
