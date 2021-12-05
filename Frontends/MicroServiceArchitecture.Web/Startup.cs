@@ -1,3 +1,4 @@
+using MicroServiceArchitecture.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +18,9 @@ namespace MicroServiceArchitecture.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
+            services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
+
             services.AddControllersWithViews();
         }
 
