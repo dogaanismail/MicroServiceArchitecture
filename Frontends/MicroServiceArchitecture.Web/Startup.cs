@@ -1,4 +1,6 @@
+using MicroServiceArchitecture.Shared.Services;
 using MicroServiceArchitecture.Web.Handler;
+using MicroServiceArchitecture.Web.Helpers;
 using MicroServiceArchitecture.Web.Models;
 using MicroServiceArchitecture.Web.Services;
 using MicroServiceArchitecture.Web.Services.Interfaces;
@@ -25,7 +27,11 @@ namespace MicroServiceArchitecture.Web
         {
             services.AddHttpContextAccessor();
             services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+            services.AddScoped<ClientCredentialTokenHandler>();
             services.AddHttpClient<IIdentityService, IdentityService>();
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
+            services.AddAccessTokenManagement();
+            services.AddScoped<PhotoHelper, PhotoHelper>();
 
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
@@ -35,7 +41,7 @@ namespace MicroServiceArchitecture.Web
             services.AddHttpClient<ICatalogService, CatalogService>(opt =>
             {
                 opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Catalog.Path}");
-            });
+            }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
             services.AddHttpClient<IPhotoStockService, PhotoStockService>(opt =>
             {
@@ -46,6 +52,8 @@ namespace MicroServiceArchitecture.Web
             {
                 opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+            services.AddHttpClient<IClientCredentialTokenService, ClientCredentialTokenService>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
