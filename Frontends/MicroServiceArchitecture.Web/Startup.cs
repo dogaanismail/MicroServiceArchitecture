@@ -46,7 +46,7 @@ namespace MicroServiceArchitecture.Web
             services.AddHttpClient<IPhotoStockService, PhotoStockService>(opt =>
             {
                 opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.PhotoStock.Path}");
-            });
+            }).AddHttpMessageHandler<ClientCredentialTokenHandler>(); ;
 
             services.AddHttpClient<IUserService, UserService>(opt =>
             {

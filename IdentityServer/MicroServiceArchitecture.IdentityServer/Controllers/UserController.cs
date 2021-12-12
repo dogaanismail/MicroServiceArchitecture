@@ -33,7 +33,7 @@ namespace MicroServiceArchitecture.IdentityServer.Controllers
         #region Methods
 
         [HttpPost]
-        public async Task<IActionResult> SignUp(SignupDto signupDto)
+        public async Task<IActionResult> SignUpAsync(SignupDto signupDto)
         {
             var user = new ApplicationUser
             {
@@ -51,7 +51,7 @@ namespace MicroServiceArchitecture.IdentityServer.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUser()
+        public async Task<IActionResult> GetUserAsync()
         {
             var userIdClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
 
