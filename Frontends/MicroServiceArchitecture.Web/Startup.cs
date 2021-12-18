@@ -1,8 +1,10 @@
+using FluentValidation.AspNetCore;
 using MicroServiceArchitecture.Shared.Services;
 using MicroServiceArchitecture.Web.Extensions;
 using MicroServiceArchitecture.Web.Handler;
 using MicroServiceArchitecture.Web.Helpers;
 using MicroServiceArchitecture.Web.Models;
+using MicroServiceArchitecture.Web.Validators;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +46,8 @@ namespace MicroServiceArchitecture.Web
                 opts.SlidingExpiration = true;
                 opts.Cookie.Name = "microservicewebcookie";
             });
+
+            services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CourseCreateInputValidator>());
 
             services.AddControllersWithViews();
         }
