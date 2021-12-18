@@ -1,3 +1,4 @@
+using MassTransit;
 using MediatR;
 using MicroServiceArchitecture.Shared.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Order.Application.Consumers;
 using Order.Application.Handlers;
 using Order.Infrastructure;
 using System.IdentityModel.Tokens.Jwt;
@@ -27,6 +29,30 @@ namespace Order.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Default port: 5672
+
+            services.AddMassTransit(x =>
+            {
+                x.AddConsumer<CreateOrderMessageCommandConsumer>();
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host(Configuration["RabbitMQUrl"], "/", host =>
+                    {
+                        host.Username("guest");
+                        host.Password("guest");
+                    });
+
+                    cfg.ReceiveEndpoint("create-order-service", e =>
+                    {
+                        e.ConfigureConsumer<CreateOrderMessageCommandConsumer>(context);
+                    });
+
+                });
+            });
+
+            services.AddMassTransitHostedService();
+
             var requireAuthorize = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("sub");
 

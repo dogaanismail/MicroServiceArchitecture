@@ -1,6 +1,7 @@
 ﻿using MicroServiceArchitecture.Web.Models.Orders;
 using MicroServiceArchitecture.Web.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace MicroServiceArchitecture.Web.Controllers
@@ -37,19 +38,28 @@ namespace MicroServiceArchitecture.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Checkout(CheckoutInfoInput checkoutInfoInput)
         {
-            var orderStatus = await _orderService.CreateOrderAsync(checkoutInfoInput);
+            //1. yol senkron iletişim
+            //  var orderStatus = await _orderService.CreateOrder(checkoutInfoInput);
 
-            if (!orderStatus.IsSuccessful)
+            // 2.yol asenkron iletişim
+            var orderSuspend = await _orderService.SuspendOrderAsync(checkoutInfoInput);
+
+            if (!orderSuspend.IsSuccessful)
             {
                 var basket = await _basketService.GetAsync();
 
                 ViewBag.basket = basket;
 
-                ViewBag.error = orderStatus.Error;
-                return RedirectToAction(nameof(Checkout));
+                ViewBag.error = orderSuspend.Error;
+
+                return View();
             }
 
-            return RedirectToAction(nameof(SuccessfulCheckout), new { orderId = orderStatus.OrderId });
+            //1. yol senkron iletişim
+            //  return RedirectToAction(nameof(SuccessfulCheckout), new { orderId = orderStatus.OrderId });
+
+            //2.yol asenkron iletişim
+            return RedirectToAction(nameof(SuccessfulCheckout), new { orderId = new Random().Next(1, 1000) });
         }
 
         public IActionResult SuccessfulCheckout(int orderId)

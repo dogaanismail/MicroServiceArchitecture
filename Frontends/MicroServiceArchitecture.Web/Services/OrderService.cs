@@ -144,8 +144,10 @@ namespace MicroServiceArchitecture.Web.Services
 
             var responsePayment = await _paymentService.ReceivePaymentAsync(payment);
 
-            if (!responsePayment)
-                return new OrderSuspendViewModel() { Error = "Odeme alinamadi", IsSuccessful = false };
+            if (!responsePayment)       
+                return new OrderSuspendViewModel() { Error = "Ödeme alınamadı", IsSuccessful = false };
+            
+            await _basketService.DeleteAsync();
 
             return new OrderSuspendViewModel() { IsSuccessful = true };
         }
