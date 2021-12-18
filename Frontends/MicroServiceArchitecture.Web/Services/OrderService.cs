@@ -104,7 +104,50 @@ namespace MicroServiceArchitecture.Web.Services
 
         public async Task<OrderSuspendViewModel> SuspendOrderAsync(CheckoutInfoInput checkoutInfoInput)
         {
-            throw new System.NotImplementedException();
+            var basket = await _basketService.GetAsync();
+
+            var orderCreateInput = new OrderCreateInput()
+            {
+                BuyerId = _sharedIdentityService.GetUserId,
+                Address = new AddressCreateInput
+                {
+                    Province = checkoutInfoInput.Province,
+                    District = checkoutInfoInput.District,
+                    Street = checkoutInfoInput.Street,
+                    Line = checkoutInfoInput.Line,
+                    ZipCode = checkoutInfoInput.ZipCode
+                }
+            };
+
+            basket.BasketItems.ForEach(x =>
+            {
+                var orderItem = new OrderItemCreateInput()
+                {
+                    ProductId = x.CourseId,
+                    Price = x.Price,
+                    PictureUrl = "",
+                    ProductName = x.CourseName
+                };
+
+                orderCreateInput.OrderItems.Add(orderItem);
+            });
+
+            var payment = new PaymentInfoInput()
+            {
+                CardName = checkoutInfoInput.CardName,
+                CardNumber = checkoutInfoInput.CardNumber,
+                CVV = checkoutInfoInput.CVV,
+                Expiration = checkoutInfoInput.Expiration,
+                TotalPrice = basket.TotalPrice,
+                Order = orderCreateInput
+            };
+
+            var responsePayment = await _paymentService.ReceivePaymentAsync(payment);
+
+            if (!responsePayment)
+                return new OrderSuspendViewModel() { Error = "Odeme alinamadi", IsSuccessful = false };
+
+            return new OrderSuspendViewModel() { IsSuccessful = true };
         }
 
         #endregion
