@@ -12,14 +12,17 @@ namespace MicroServiceArchitecture.Web.Services
     {
         #region Fields
         private readonly HttpClient _httpClient;
+        private readonly IDiscountService _discountService;
 
         #endregion
 
         #region Ctor
 
-        public BasketService(HttpClient httpClient)
+        public BasketService(HttpClient httpClient,
+            IDiscountService discountService)
         {
             _httpClient = httpClient;
+            _discountService = discountService;
         }
 
         #endregion
@@ -49,12 +52,37 @@ namespace MicroServiceArchitecture.Web.Services
 
         public async Task<bool> ApplyDiscountAsync(string discountCode)
         {
-            throw new System.NotImplementedException();
+            await CancelApplyDiscountAsync();
+
+            var basket = await GetAsync();
+            if (basket == null)
+            {
+                return false;
+            }
+
+            var hasDiscount = await _discountService.GetDiscountAsync(discountCode);
+            if (hasDiscount == null)
+            {
+                return false;
+            }
+
+            basket.ApplyDiscount(hasDiscount.Code, hasDiscount.Rate);
+            await SaveOrUpdateAsync(basket);
+            return true;
         }
 
         public async Task<bool> CancelApplyDiscountAsync()
         {
-            throw new System.NotImplementedException();
+            var basket = await GetAsync();
+
+            if (basket == null || basket.DiscountCode == null)
+            {
+                return false;
+            }
+
+            basket.CancelDiscount();
+            await SaveOrUpdateAsync(basket);
+            return true;
         }
 
         public async Task<bool> DeleteAsync()

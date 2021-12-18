@@ -44,7 +44,7 @@ namespace Discount.Api.Controllers
         }
 
         [HttpGet]
-        [Route("/api/[controller]/GetByCodeAsync/{code}")]
+        [Route("/api/[controller]/GetByCode/{code}")]
         public async Task<IActionResult> GetByCodeAsync(string code)
         {
             var discount = await _discountService.GetByCodeAndUserIdAsync(code, _sharedIdentityService.GetUserId);
