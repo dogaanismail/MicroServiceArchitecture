@@ -15,7 +15,7 @@ namespace MicroServiceArchitecture.Web.Handler
 
         #endregion
 
-        #region
+        #region Ctor
 
         public ClientCredentialTokenHandler(IClientCredentialTokenService clientCredentialTokenService)
         {
