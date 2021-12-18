@@ -5,6 +5,6 @@ namespace MicroServiceArchitecture.Web.Services.Interfaces
 {
     public interface IPaymentService
     {
-        Task<bool> ReceivePayment(PaymentInfoInput paymentInfoInput);
+        Task<bool> ReceivePaymentAsync(PaymentInfoInput paymentInfoInput);
     }
 }

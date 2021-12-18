@@ -37,10 +37,8 @@ namespace MicroServiceArchitecture.Web.Services
         public async Task<PhotoViewModel> UploadPhoto(IFormFile photo)
         {
             if (photo == null || photo.Length <= 0)
-            {
                 return null;
-            }
-            // örnek dosya ismi= 203802340234.jpg
+            
             var randonFilename = $"{Guid.NewGuid()}{Path.GetExtension(photo.FileName)}";
 
             using var ms = new MemoryStream();
@@ -54,11 +52,9 @@ namespace MicroServiceArchitecture.Web.Services
 
             var response = await _httpClient.PostAsync("photos", multipartContent);
 
-            if (!response.IsSuccessStatusCode)
-            {
+            if (!response.IsSuccessStatusCode)          
                 return null;
-            }
-
+            
             var responseSuccess = await response.Content.ReadFromJsonAsync<Response<PhotoViewModel>>();
 
             return responseSuccess.Data;

@@ -46,6 +46,11 @@ namespace MicroServiceArchitecture.Web.Extensions
             {
                 opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Payment.Path}");
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+
+            services.AddHttpClient<IOrderService, OrderService>(opt =>
+            {
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Order.Path}");
+            }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace MicroServiceArchitecture.Web.Services
 
         #region Methods
 
-        public async Task<bool> ReceivePayment(PaymentInfoInput paymentInfoInput)
+        public async Task<bool> ReceivePaymentAsync(PaymentInfoInput paymentInfoInput)
         {
             var response = await _httpClient.PostAsJsonAsync("fakepayments", paymentInfoInput);
 
