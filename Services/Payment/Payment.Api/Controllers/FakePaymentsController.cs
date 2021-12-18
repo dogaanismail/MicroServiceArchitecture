@@ -1,6 +1,7 @@
 ﻿using MicroServiceArchitecture.Shared.ControllerBases;
 using MicroServiceArchitecture.Shared.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Payment.Api.Models;
 
 namespace Payment.Api.Controllers
 {
@@ -9,7 +10,7 @@ namespace Payment.Api.Controllers
     public class FakePaymentsController : CustomBaseController
     {
         [HttpPost]
-        public IActionResult ReceivePayment()
+        public IActionResult ReceivePayment(PaymentDto paymentDto)
         {
             return CreateActionResultInstance(Response<NoContent>.Success(200));
         }
