@@ -51,6 +51,7 @@ namespace MicroServiceArchitecture.IdentityServer
                 .AddAspNetIdentity<ApplicationUser>();
 
             builder.AddResourceOwnerValidator<IdentityResourceOwnerPasswordValidator>();
+            builder.AddExtensionGrantValidator<TokenExchangeExtensionGrantValidator>();
 
             builder.AddDeveloperSigningCredential();
 

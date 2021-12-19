@@ -1,3 +1,4 @@
+using MicroServiceArchitecture.Gateaway.DelegateHandlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,8 @@ namespace MicroServiceArchitecture.Gateaway
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient<TokenExhangeDelegateHandler>();
+
             services.AddAuthentication().AddJwtBearer("GateawayAuthenticationSchema", options =>
             {
                 options.Authority = Configuration["IdentityServerURL"];
@@ -26,7 +29,7 @@ namespace MicroServiceArchitecture.Gateaway
                 options.RequireHttpsMetadata = false;
             });
 
-            services.AddOcelot();
+            services.AddOcelot().AddDelegatingHandler<TokenExhangeDelegateHandler>();
         }
 
         async public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

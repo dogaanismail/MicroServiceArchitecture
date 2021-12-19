@@ -21,7 +21,7 @@ namespace MicroServiceArchitecture.Web.Services
         #region Ctor
 
         public ClientCredentialTokenService(IOptions<ServiceApiSettings> serviceApiSettings,
-            IOptions<ClientSettings> clientSettings, 
+            IOptions<ClientSettings> clientSettings,
             IClientAccessTokenCache clientAccessTokenCache,
             HttpClient httpClient)
         {
@@ -41,7 +41,6 @@ namespace MicroServiceArchitecture.Web.Services
 
             if (currentToken != null)
                 return currentToken.AccessToken;
-            
 
             var disco = await _httpClient.GetDiscoveryDocumentAsync(new DiscoveryDocumentRequest
             {
@@ -69,7 +68,6 @@ namespace MicroServiceArchitecture.Web.Services
             await _clientAccessTokenCache.SetAsync("WebClientToken", newToken.AccessToken, newToken.ExpiresIn, new ClientAccessTokenParameters { });
 
             return newToken.AccessToken;
-
         }
 
         #endregion
