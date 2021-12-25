@@ -52,9 +52,9 @@ services:
     build: 
       context: .
       dockerfile: MicroServiceArchitecture.Gateway/Dockerfile    
-  aspnetcoremvc.web:
-    image: aspnetcoremvc.web_image
-    build: 
+  coremvc.web:
+    image: coremvc.web_image
+    build:
       context: .
       dockerfile: Frontends/MicroServiceArchitecture.Web/Dockerfile
 volumes:

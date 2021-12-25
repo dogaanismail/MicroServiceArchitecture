@@ -129,8 +129,8 @@ services:
       - IdentityServerURL=http://identityserver.api
     ports:
       - "5000:80"
-  aspnetcoremvc.web:
-    container_name: aspnetcoremvc.web
+  coremvc.web:
+    container_name: coremvc.web
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ServiceApiSettings:IdentityBaseUri=http://identityserver.api
