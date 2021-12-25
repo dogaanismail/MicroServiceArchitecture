@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace MicroServiceArchitecture.Gateaway
+namespace MicroServiceArchitecture.Gateway
 {
     public class Program
     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31829.152
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{406811CE-6AEA-4EEF-98C1-9461E4B9E9FF}"
 EndProject
@@ -50,13 +50,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{7042
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment.Api", "Services\Payment\Payment.Api\Payment.Api.csproj", "{75F1055D-7904-4A70-B5DB-677DADADB1B6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateaways", "Gateaways", "{32C54982-AD40-454E-B292-D80F9AE93E55}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateways", "Gateways", "{32C54982-AD40-454E-B292-D80F9AE93E55}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServiceArchitecture.Gateaway", "MicroServiceArchitecture.Gateaway\MicroServiceArchitecture.Gateaway.csproj", "{CEE78B95-6FDF-43ED-AFC2-6E1683502006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServiceArchitecture.Gateway", "MicroServiceArchitecture.Gateway\MicroServiceArchitecture.Gateway.csproj", "{CEE78B95-6FDF-43ED-AFC2-6E1683502006}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontends", "Frontends", "{2356C634-9C13-4696-A666-958CEDC89782}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServiceArchitecture.Web", "Frontends\MicroServiceArchitecture.Web\MicroServiceArchitecture.Web.csproj", "{1EF571ED-D097-4B6E-A043-4C4A006E2590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServiceArchitecture.Web", "Frontends\MicroServiceArchitecture.Web\MicroServiceArchitecture.Web.csproj", "{1EF571ED-D097-4B6E-A043-4C4A006E2590}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

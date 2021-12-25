@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "MicroServiceArchitecture.Gateaway": {
+    "MicroServiceArchitecture.Gateway": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": false,

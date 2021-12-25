@@ -19,12 +19,12 @@ namespace MicroServiceArchitecture.Web.Extensions
 
             services.AddHttpClient<ICatalogService, CatalogService>(opt =>
             {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Catalog.Path}");
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUrl}/{serviceApiSettings.Catalog.Path}");
             }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
             services.AddHttpClient<IPhotoStockService, PhotoStockService>(opt =>
             {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.PhotoStock.Path}");
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUrl}/{serviceApiSettings.PhotoStock.Path}");
             }).AddHttpMessageHandler<ClientCredentialTokenHandler>(); ;
 
             services.AddHttpClient<IUserService, UserService>(opt =>
@@ -34,22 +34,22 @@ namespace MicroServiceArchitecture.Web.Extensions
 
             services.AddHttpClient<IBasketService, BasketService>(opt =>
             {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Basket.Path}");
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUrl}/{serviceApiSettings.Basket.Path}");
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
             services.AddHttpClient<IDiscountService, DiscountService>(opt =>
             {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Discount.Path}");
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUrl}/{serviceApiSettings.Discount.Path}");
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
             services.AddHttpClient<IPaymentService, PaymentService>(opt =>
             {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Payment.Path}");
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUrl}/{serviceApiSettings.Payment.Path}");
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
 
             services.AddHttpClient<IOrderService, OrderService>(opt =>
             {
-                opt.BaseAddress = new Uri($"{serviceApiSettings.GateawayBaseUrl}/{serviceApiSettings.Order.Path}");
+                opt.BaseAddress = new Uri($"{serviceApiSettings.GatewayBaseUrl}/{serviceApiSettings.Order.Path}");
             }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
         }
     }

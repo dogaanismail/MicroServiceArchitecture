@@ -4,7 +4,7 @@
     {
         public string IdentityBaseUri { get; set; }
         public string PhotoStockUri { get; set; }
-        public string GateawayBaseUrl { get; set; }
+        public string GatewayBaseUrl { get; set; }
 
         public ServiceApi Catalog { get; set; }
 

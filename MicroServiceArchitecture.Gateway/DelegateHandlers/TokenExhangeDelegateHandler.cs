@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MicroServiceArchitecture.Gateaway.DelegateHandlers
+namespace MicroServiceArchitecture.Gateway.DelegateHandlers
 {
     public class TokenExhangeDelegateHandler : DelegatingHandler
     {

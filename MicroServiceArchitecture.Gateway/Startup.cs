@@ -1,4 +1,4 @@
-using MicroServiceArchitecture.Gateaway.DelegateHandlers;
+using MicroServiceArchitecture.Gateway.DelegateHandlers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
-namespace MicroServiceArchitecture.Gateaway
+namespace MicroServiceArchitecture.Gateway
 {
     public class Startup
     {
@@ -22,10 +22,10 @@ namespace MicroServiceArchitecture.Gateaway
         {
             services.AddHttpClient<TokenExhangeDelegateHandler>();
 
-            services.AddAuthentication().AddJwtBearer("GateawayAuthenticationSchema", options =>
+            services.AddAuthentication().AddJwtBearer("GatewayAuthenticationSchema", options =>
             {
                 options.Authority = Configuration["IdentityServerURL"];
-                options.Audience = "resource_gateaway";
+                options.Audience = "resource_gateway";
                 options.RequireHttpsMetadata = false;
             });
 
